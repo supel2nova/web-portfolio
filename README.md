@@ -77,17 +77,18 @@ Project screenshots: under `src/assets/` (wired via `src/lib/assets.ts`).
 
 ## CI / Deploy
 
-GitHub Actions:
+Single workflow: `.github/workflows/ci.yml`
 
-- `.github/workflows/ci.yml` — lint, typecheck, build on push/PR to `main`
-- `.github/workflows/deploy.yml` — build + `wrangler deploy` on push to `main`
+- **check** — lint, typecheck, build (push + PR)
+- **deploy** — Cloudflare Workers, only after check passes on `main`
 
-Repo secrets required for deploy:
+Repo secret required for deploy:
 
-| Secret                  | Purpose                            |
-| ----------------------- | ---------------------------------- |
-| `CLOUDFLARE_API_TOKEN`  | Token with Workers edit permission |
-| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare account ID              |
+| Secret                 | Purpose                                              |
+| ---------------------- | ---------------------------------------------------- |
+| `CLOUDFLARE_API_TOKEN` | API token — use template **Edit Cloudflare Workers** |
+
+`account_id` is set in `wrangler.jsonc`. `CLOUDFLARE_ACCOUNT_ID` secret is optional (overrides config).
 
 ## Deploy
 

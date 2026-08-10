@@ -1,6 +1,7 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "web-port-supernova",
+  "account_id": "98787c29da20253f505333f51668464d",
   "compatibility_date": "2026-08-05",
   "assets": {
     "directory": "./dist",
