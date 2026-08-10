@@ -3,9 +3,9 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useRef, useState } from 'react'
 import { NAV_OFFSET, NAV_SCROLL_START } from '../constants'
-import { useTheme } from '../hooks/useTheme'
 import { NAV_LINKS } from '../data/nav'
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
+import { useTheme } from '../hooks/useTheme'
 
 export default function Nav() {
   const { theme, toggleTheme } = useTheme()
@@ -106,7 +106,7 @@ export default function Nav() {
           onClick={(e) => scrollTo(e, '#top')}
           className="font-mono text-sm md:text-base font-semibold tracking-tight"
         >
-          <span ref={logoRef}>panupong</span>
+          <span ref={logoRef}>supel2nova</span>
           <span className="text-accent">.</span>dev
         </a>
 
