@@ -1,0 +1,152 @@
+<svg viewBox="0 0 1400 800" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Segoe UI', 'Helvetica Neue', sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2933"/>
+    </marker>
+    <marker id="arrowDash" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5b6b7c"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1400" height="800" fill="#ffffff"/>
+
+  <!-- ================= GHCR ================= -->
+  <rect x="590" y="40" width="232" height="92" rx="10" fill="#f6f2fd" stroke="#6e40c9" stroke-width="2"/>
+  <text x="706" y="70" text-anchor="middle" font-size="15" font-weight="700" fill="#4c2a91">GHCR — ghcr.io</text>
+  <text x="706" y="92" text-anchor="middle" font-size="12" fill="#4c2a91">OCI image registry</text>
+  <text x="706" y="112" text-anchor="middle" font-size="11.5" fill="#6b6b7c">foodbank-client:&lt;sha&gt; / -service:&lt;sha&gt;</text>
+
+  <!-- ================= GitHub panel ================= -->
+  <rect x="30" y="175" width="560" height="590" rx="12" fill="#fbfcfd" stroke="#24292f" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="48" y="205" font-size="19" font-weight="700" fill="#24292f">GitHub (SaaS)</text>
+
+  <!-- Developer -->
+  <rect x="52" y="252" width="112" height="72" rx="9" fill="#eef2f6" stroke="#1f2933" stroke-width="1.6"/>
+  <circle cx="108" cy="278" r="11" fill="#1f2933"/>
+  <path d="M 93 302 a 15 13 0 0 1 30 0 z" fill="#1f2933"/>
+  <text x="108" y="318" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1f2933">Developer</text>
+
+  <!-- App repos group -->
+  <rect x="200" y="232" width="200" height="152" rx="10" fill="#ffffff" stroke="#6b7a89" stroke-width="1.4" stroke-dasharray="5 4"/>
+  <text x="300" y="253" text-anchor="middle" font-size="12" font-weight="600" fill="#6b7a89">Application repos</text>
+  <rect x="216" y="264" width="168" height="44" rx="7" fill="#fdecea" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="300" y="283" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1f2933">foodbank-client</text>
+  <text x="300" y="299" text-anchor="middle" font-size="11" fill="#6b6b7c">frontend</text>
+  <rect x="216" y="320" width="168" height="44" rx="7" fill="#fdecea" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="300" y="339" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1f2933">foodbank-service</text>
+  <text x="300" y="355" text-anchor="middle" font-size="11" fill="#6b6b7c">backend</text>
+
+  <!-- GitHub Actions -->
+  <rect x="424" y="262" width="146" height="98" rx="9" fill="#eaf3fe" stroke="#1f6feb" stroke-width="1.8"/>
+  <text x="497" y="290" text-anchor="middle" font-size="13" font-weight="700" fill="#0b4fa8">GitHub Actions</text>
+  <text x="497" y="310" text-anchor="middle" font-size="11" fill="#3c5c7a">build · test · scan</text>
+  <text x="497" y="327" text-anchor="middle" font-size="11" fill="#3c5c7a">docker build/push</text>
+  <text x="497" y="345" text-anchor="middle" font-size="11" fill="#3c5c7a">OIDC / GITHUB_TOKEN</text>
+
+  <!-- Infra repo -->
+  <rect x="200" y="470" width="252" height="96" rx="9" fill="#fdecea" stroke="#c0392b" stroke-width="1.8"/>
+  <text x="326" y="496" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2933">Infra repo (single source of truth)</text>
+  <text x="326" y="518" text-anchor="middle" font-size="11.5" fill="#4a5460">Helm chart + values-prod.yaml</text>
+  <text x="326" y="536" text-anchor="middle" font-size="11.5" fill="#4a5460">image.tag = &lt;sha&gt;</text>
+  <text x="326" y="554" text-anchor="middle" font-size="11" fill="#8a6d3b">secrets → SealedSecret / ExternalSecret</text>
+
+  <!-- (1) dev -> repos -->
+  <path d="M 166 288 L 196 288" stroke="#1f2933" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+  <circle cx="181" cy="256" r="11" fill="#ffffff" stroke="#1f2933" stroke-width="1.5"/>
+  <text x="181" y="260" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1f2933">1</text>
+  <text x="112" y="352" font-size="11.5" fill="#4a5460">commit → PR → review</text>
+  <text x="132" y="368" font-size="11.5" fill="#4a5460">→ merge to main</text>
+
+  <!-- (2) repos -> actions -->
+  <path d="M 402 308 L 420 308" stroke="#1f2933" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+  <circle cx="411" cy="232" r="11" fill="#ffffff" stroke="#1f2933" stroke-width="1.5"/>
+  <text x="411" y="236" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1f2933">2</text>
+  <text x="411" y="216" text-anchor="middle" font-size="11.5" fill="#4a5460">on: push (main)</text>
+
+  <!-- (3) actions -> GHCR -->
+  <path d="M 497 260 L 497 172 L 662 172 L 662 134" stroke="#1f2933" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+  <circle cx="560" cy="155" r="11" fill="#ffffff" stroke="#1f2933" stroke-width="1.5"/>
+  <text x="560" y="159" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1f2933">3</text>
+  <text x="580" y="159" font-size="11.5" fill="#4a5460">push image tagged with commit SHA (immutable)</text>
+
+  <!-- (4) actions -> infra repo -->
+  <path d="M 497 362 L 497 518 L 456 518" stroke="#1f2933" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+  <circle cx="497" cy="404" r="11" fill="#ffffff" stroke="#1f2933" stroke-width="1.5"/>
+  <text x="497" y="408" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1f2933">4</text>
+  <text x="514" y="430" font-size="11.5" fill="#4a5460">bot commit / auto-PR</text>
+  <text x="514" y="446" font-size="11.5" fill="#4a5460">bump image.tag</text>
+  <text x="514" y="462" font-size="11" fill="#8a6d3b">(needs write token → scope it)</text>
+
+  <!-- ================= Kubernetes panel ================= -->
+  <rect x="640" y="175" width="730" height="590" rx="12" fill="#fbfcfd" stroke="#326ce5" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="658" y="205" font-size="19" font-weight="700" fill="#1d4ed8">Kubernetes cluster — ODDS Cloud</text>
+
+  <!-- foodbank-bkk namespace -->
+  <rect x="958" y="248" width="382" height="304" rx="11" fill="#ffffff" stroke="#326ce5" stroke-width="1.6" stroke-dasharray="5 4"/>
+  <text x="1149" y="272" text-anchor="middle" font-size="13" font-weight="700" fill="#1d4ed8">namespace: foodbank-bkk</text>
+
+  <rect x="982" y="292" width="164" height="112" rx="8" fill="#eef4ff" stroke="#326ce5" stroke-width="1.5"/>
+  <text x="1064" y="315" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1f2933">Deployment</text>
+  <text x="1064" y="333" text-anchor="middle" font-size="12" fill="#1f2933">foodbank-client</text>
+  <rect x="1002" y="345" width="124" height="44" rx="6" fill="#ffffff" stroke="#6b7a89" stroke-width="1.2"/>
+  <text x="1064" y="363" text-anchor="middle" font-size="11" fill="#4a5460">ReplicaSet → Pods</text>
+  <text x="1064" y="379" text-anchor="middle" font-size="11" fill="#4a5460">Service + Ingress</text>
+
+  <rect x="1156" y="292" width="164" height="112" rx="8" fill="#eef4ff" stroke="#326ce5" stroke-width="1.5"/>
+  <text x="1238" y="315" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1f2933">Deployment</text>
+  <text x="1238" y="333" text-anchor="middle" font-size="12" fill="#1f2933">foodbank-service</text>
+  <rect x="1176" y="345" width="124" height="44" rx="6" fill="#ffffff" stroke="#6b7a89" stroke-width="1.2"/>
+  <text x="1238" y="363" text-anchor="middle" font-size="11" fill="#4a5460">ReplicaSet → Pods</text>
+  <text x="1238" y="379" text-anchor="middle" font-size="11" fill="#4a5460">Service + Ingress</text>
+
+  <rect x="982" y="432" width="338" height="90" rx="8" fill="#f4f7fa" stroke="#6b7a89" stroke-width="1.5"/>
+  <text x="1151" y="456" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1f2933">Worker node · kubelet + containerd</text>
+  <text x="1151" y="476" text-anchor="middle" font-size="11.5" fill="#4a5460">เป็นตัวที่ pull image จริง ไม่ใช่ Argo CD</text>
+  <text x="1151" y="496" text-anchor="middle" font-size="11.5" fill="#4a5460">ใช้ imagePullSecret ของ namespace</text>
+  <text x="1151" y="513" text-anchor="middle" font-size="11" fill="#8a6d3b">(GHCR private → ต้องมี secret / public → ไม่ต้อง)</text>
+
+  <!-- argocd namespace -->
+  <rect x="670" y="560" width="238" height="176" rx="11" fill="#ffffff" stroke="#ef7b4d" stroke-width="1.6" stroke-dasharray="5 4"/>
+  <text x="789" y="584" text-anchor="middle" font-size="13" font-weight="700" fill="#c2410c">namespace: argocd</text>
+  <rect x="692" y="600" width="194" height="118" rx="8" fill="#fff3ec" stroke="#ef7b4d" stroke-width="1.5"/>
+  <text x="789" y="624" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2933">Argo CD</text>
+  <text x="789" y="645" text-anchor="middle" font-size="11.5" fill="#4a5460">repo-server · app-controller</text>
+  <text x="789" y="663" text-anchor="middle" font-size="11.5" fill="#4a5460">API server + UI</text>
+  <text x="789" y="683" text-anchor="middle" font-size="11.5" fill="#4a5460">Application CR → auto-sync</text>
+  <text x="789" y="702" text-anchor="middle" font-size="11" fill="#8a6d3b">self-heal · prune</text>
+
+  <!-- (5) argocd -> infra repo (git poll) -->
+  <path d="M 668 618 L 540 618 L 540 542 L 456 542" stroke="#5b6b7c" stroke-width="1.7" fill="none" stroke-dasharray="6 4" marker-end="url(#arrowDash)"/>
+  <circle cx="604" cy="618" r="11" fill="#ffffff" stroke="#5b6b7c" stroke-width="1.5"/>
+  <text x="604" y="622" text-anchor="middle" font-size="11.5" font-weight="700" fill="#3c4a57">5</text>
+  <text x="604" y="652" text-anchor="middle" font-size="11.5" fill="#4a5460">Argo CD ดึง (pull) Git</text>
+  <text x="604" y="668" text-anchor="middle" font-size="11.5" fill="#4a5460">ทุก ~3 นาที หรือ webhook</text>
+  <text x="604" y="684" text-anchor="middle" font-size="11" fill="#8a6d3b">read-only deploy key</text>
+
+  <!-- (6) argocd -> namespace apply -->
+  <path d="M 910 608 L 934 608 L 934 348 L 954 348" stroke="#1f2933" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+  <circle cx="934" cy="418" r="11" fill="#ffffff" stroke="#1f2933" stroke-width="1.5"/>
+  <text x="934" y="422" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1f2933">6</text>
+  <text x="880" y="452" font-size="11.5" fill="#4a5460">helm template</text>
+  <text x="880" y="468" font-size="11.5" fill="#4a5460">→ apply manifests</text>
+
+  <!-- (7) kubelet -> GHCR -->
+  <path d="M 1324 477 L 1358 477 L 1358 86 L 826 86" stroke="#5b6b7c" stroke-width="1.7" fill="none" stroke-dasharray="6 4" marker-end="url(#arrowDash)"/>
+  <circle cx="1090" cy="86" r="11" fill="#ffffff" stroke="#5b6b7c" stroke-width="1.5"/>
+  <text x="1090" y="90" text-anchor="middle" font-size="11.5" font-weight="700" fill="#3c4a57">7</text>
+  <text x="1110" y="90" font-size="11.5" fill="#4a5460">kubelet pull image :&lt;sha&gt;</text>
+  <text x="900" y="70" font-size="11.5" fill="#4a5460">(image pull เกิดตอนสร้าง Pod ใหม่)</text>
+
+  <!-- (8) live state watch -->
+  <path d="M 1040 554 L 1040 590 L 912 590" stroke="#5b6b7c" stroke-width="1.7" fill="none" stroke-dasharray="6 4" marker-end="url(#arrowDash)"/>
+  <circle cx="990" cy="590" r="11" fill="#ffffff" stroke="#5b6b7c" stroke-width="1.5"/>
+  <text x="990" y="594" text-anchor="middle" font-size="11.5" font-weight="700" fill="#3c4a57">8</text>
+  <text x="1012" y="614" font-size="11.5" fill="#4a5460">watch live state → diff กับ Git</text>
+  <text x="1012" y="630" font-size="11.5" fill="#4a5460">OutOfSync → self-heal · health status</text>
+
+  <!-- legend -->
+  <line x1="672" y1="748" x2="702" y2="748" stroke="#1f2933" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="710" y="752" font-size="11.5" fill="#4a5460">push / write</text>
+  <line x1="800" y1="748" x2="830" y2="748" stroke="#5b6b7c" stroke-width="1.7" stroke-dasharray="6 4" marker-end="url(#arrowDash)"/>
+  <text x="838" y="752" font-size="11.5" fill="#4a5460">pull / observe (ทิศทางจริงของ GitOps)</text>
+</svg>
