@@ -170,14 +170,14 @@ export default function Hero() {
             </p>
 
             <div className="term-out mb-5">
-              <p className="text-main text-xl md:text-3xl font-semibold tracking-tight">
+              <h1 className="text-main text-xl md:text-3xl font-semibold tracking-tight">
                 {NAME}
                 <span
                   ref={cursorRef}
                   className="inline-block w-[0.55em] h-[1.05em] ml-1 align-[-0.15em] bg-accent"
                   aria-hidden
                 />
-              </p>
+              </h1>
             </div>
 
             <p ref={roleRef} className="term-out text-accent mb-4 text-sm md:text-base">

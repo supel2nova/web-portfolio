@@ -90,6 +90,19 @@ Repo secret required for deploy:
 
 `account_id` is set in `wrangler.jsonc`. `CLOUDFLARE_ACCOUNT_ID` secret is optional (overrides config).
 
+Concurrency is per job: `check` cancels superseded runs, `deploy` queues instead — so a push during
+a deploy never cancels `wrangler deploy` halfway.
+
+### Cloudflare Workers Builds
+
+GitHub Actions is the only deploy path. **Workers Builds** (Cloudflare's own git-connected CI) must
+stay disconnected — if it is connected, every push deploys twice and it fails with:
+
+> The build token selected for this build has been deleted or rolled and cannot be used for this build.
+
+That token lives in the Cloudflare dashboard, not in this repo. Either disconnect the build
+(Workers & Pages → the Worker → Settings → Builds → disconnect) or pick a valid build token there.
+
 ## Deploy
 
 Build output is a static SPA. Wrangler serves `dist/` as Cloudflare Workers assets (`wrangler.jsonc`).
@@ -99,6 +112,38 @@ npm run deploy
 ```
 
 Local auth: `npx wrangler login` once.
+
+## SEO
+
+- `index.html` carries title, description, canonical, Open Graph and a `Person` JSON-LD block
+  (name, `alternateName` supel2nova / Supernova, job title, location, skills).
+- `public/robots.txt` + `public/sitemap.xml` point at `https://supel2nova.dev/`.
+- The hero name is the page's single `<h1>`.
+
+The JSON-LD is inline, so its **sha256 is pinned in `public/_headers`**. Editing that block changes
+the hash — recompute it or the CSP will silently drop the structured data:
+
+```bash
+npm run build
+node -e "const h=require('crypto').createHash('sha256');const m=require('fs').readFileSync('dist/index.html','utf8').match(/<script type=\"application\/ld\+json\">([\s\S]*?)<\/script>/);h.update(m[1]);console.log('sha256-'+h.digest('base64'))"
+```
+
+## Security
+
+`public/_headers` (served by Cloudflare Workers static assets):
+
+| Header                      | Effect                                                    |
+| --------------------------- | --------------------------------------------------------- |
+| `Content-Security-Policy`   | Only same-origin scripts; Google Fonts allowed explicitly |
+| `Strict-Transport-Security` | HTTPS only, 1 year, `preload`                             |
+| `X-Content-Type-Options`    | No MIME sniffing                                          |
+| `Referrer-Policy`           | `strict-origin-when-cross-origin`                         |
+| `Permissions-Policy`        | Camera / mic / geolocation / payment off                  |
+| `frame-ancestors 'none'`    | No embedding — blocks clickjacking                        |
+
+The site has no forms, no API and no user input, so the remaining surface is transport and
+embedding, which the headers above cover. Rate limiting / bot protection is Cloudflare-side
+(WAF, Bot Fight Mode) — not configured from this repo.
 
 ## License
 
