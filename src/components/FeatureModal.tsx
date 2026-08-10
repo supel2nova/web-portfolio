@@ -1,10 +1,10 @@
-import { useRef } from 'react'
-import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
 import { SplitText } from 'gsap/SplitText'
+import { useRef } from 'react'
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 import { shotFile } from '../lib/assets'
 import { magnetic } from '../lib/magnetic'
-import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 import type { Project } from '../types'
 
 interface FeatureModalProps {
@@ -115,18 +115,16 @@ export default function FeatureModal({ project, onClose }: FeatureModalProps) {
                 {shot && (
                   <div className="ml-6">
                     <div
-                      className={
-                        feature.blurred
-                          ? 'feat-shot relative mt-4 overflow-hidden rounded-md border border-theme bg-white'
-                          : 'feat-shot relative mt-4 h-80 overflow-y-auto rounded-md border border-theme bg-white'
-                      }
+                      className={`feat-shot relative mt-4 h-80 rounded-md border border-theme bg-white ${
+                        feature.blurred ? 'overflow-hidden' : 'overflow-y-auto'
+                      }`}
                     >
                       <img
                         src={shot}
                         alt=""
                         className={
                           feature.blurred
-                            ? 'feat-img block w-full h-auto select-none pointer-events-none'
+                            ? 'feat-img size-full select-none object-cover object-top'
                             : 'feat-img w-full'
                         }
                       />
