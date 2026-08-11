@@ -34,7 +34,7 @@ export default function Intro() {
         },
       })
 
-      gsap.set(cmdRef.current, { text: '' })
+      gsap.set(cmdRef.current, { text: '', opacity: 1 })
       gsap.set(barRef.current, { scaleX: 0, transformOrigin: 'left center' })
 
       tl.to(cmdRef.current, {
@@ -91,11 +91,11 @@ export default function Intro() {
       aria-label="Loading"
     >
       <div ref={innerRef} className="w-full max-w-sm font-mono">
-        <p ref={cmdRef} className="text-sm text-main mb-4 min-h-[1.5em]">
+        <p ref={cmdRef} className="text-sm text-main mb-4 min-h-[1.5em] opacity-0">
           <span className="text-accent">$</span> ./init supel2nova.dev
         </p>
         <div className="h-[3px] w-full rounded-full bg-[var(--border)] overflow-hidden mb-3">
-          <div ref={barRef} className="h-full w-full bg-accent" />
+          <div ref={barRef} className="h-full w-full origin-left scale-x-0 bg-accent" />
         </div>
         <div className="flex justify-between text-xs text-dim">
           <span ref={statusRef}>booting</span>
