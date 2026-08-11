@@ -77,6 +77,7 @@ export const PROJECTS: Project[] = [
         name: 'Listed Company Snapshot',
         shot: 'lss-snapshot',
         link: 'https://www.setlink.set.or.th/main',
+        note: 'Preview from a test account — mock data throughout; company name, logo and contact details blurred.',
         detail:
           'A quarterly one-page snapshot rendered in both languages — financial statements, ratios, price chart against the SET index, shareholder breakdown — where the English side is filled by AI translation streamed over WebSocket while the Thai one is being written.',
       },

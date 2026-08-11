@@ -12,14 +12,14 @@ import Mysql from '@thesvg/react/mysql'
 import Nextjs from '@thesvg/react/nextjs'
 import Nodejs from '@thesvg/react/nodejs'
 import Postgresql from '@thesvg/react/postgresql'
-import React from '@thesvg/react/react'
 import Tailwindcss from '@thesvg/react/tailwindcss'
 import Tanstack from '@thesvg/react/tanstack'
 import Typescript from '@thesvg/react/typescript'
+import ReactLogo from '../components/icons/ReactLogo'
 import type { Skill } from '../types'
 
 export const SKILLS: Skill[] = [
-  { name: 'React', Icon: React, href: 'https://react.dev' },
+  { name: 'React', Icon: ReactLogo, href: 'https://react.dev' },
   { name: 'Next.js', Icon: Nextjs, href: 'https://nextjs.org/docs' },
   { name: 'TypeScript', Icon: Typescript, href: 'https://www.typescriptlang.org/docs/' },
   {
