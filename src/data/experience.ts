@@ -19,7 +19,8 @@ export const EXPERIENCE: ExperienceEntry[] = [
     period: '2024',
     role: 'Software Engineer (Consultant)',
     org: 'ODD-E — Food Bank',
-    detail: 'Load testing with K6 and optimizing Kubernetes/Helm for deployment',
+    detail:
+      'Modelled expected load from field usage, validated capacity with K6, and configured Kubernetes deployments through Helm values',
   },
   {
     period: '2023–2025',

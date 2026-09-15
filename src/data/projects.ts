@@ -88,10 +88,10 @@ export const PROJECTS: Project[] = [
     short: 'FB',
     slug: 'foodbank',
     onWhite: true,
-    title: 'Load Testing & Infra Optimization',
+    title: 'Load Testing & Capacity Validation',
     client: null,
     description:
-      'Conducted system load testing using K6 to evaluate production stability. Optimized Kubernetes and Helm chart configurations for deployment environments.',
+      'Derived a production-representative load model from field usage discovery (1 req/s per district), applying emergency and safety factors to a 200 RPS target across 50 districts. Validated system capacity with K6 against a resource-constrained Docker environment, using p95 latency and error rate as pass criteria. Configured Kubernetes deployments through Helm values in a GitOps workflow, setting resource requests and limits informed by load-test results.',
     tags: ['Docker', 'Kubernetes', 'K6', 'Helm'],
     features: [
       {
