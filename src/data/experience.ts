@@ -27,6 +27,9 @@ export const EXPERIENCE: ExperienceEntry[] = [
     org: 'ODD-E — Inskru',
     detail: 'Started my software development career, building frontend on a legacy codebase',
   },
+]
+
+export const EDUCATION: ExperienceEntry[] = [
   {
     period: '2022',
     role: 'Junior Software Developer Bootcamp',

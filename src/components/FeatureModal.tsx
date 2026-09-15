@@ -184,7 +184,7 @@ export default function FeatureModal({ project, onClose }: FeatureModalProps) {
             rel="noopener noreferrer"
             className="feat-cta mt-8 inline-flex items-center gap-2 rounded-md bg-accent px-5 py-2.5 font-mono text-sm font-medium text-[#0f1116] hover:opacity-90 transition-opacity will-change-transform"
           >
-            Visit insKru ↗
+            Visit {project.org} ↗
           </a>
         )}
       </div>

@@ -1,13 +1,19 @@
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { useRef } from 'react'
-import { EXPERIENCE } from '../data/experience'
+import { EDUCATION, EXPERIENCE } from '../data/experience'
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
+import type { ExperienceEntry } from '../types'
 import SectionHeader from './SectionHeader'
 
-export default function Experience() {
+interface TimelineProps {
+  entries: ExperienceEntry[]
+  pulse?: boolean
+}
+
+function Timeline({ entries, pulse = false }: TimelineProps) {
   const reduced = usePrefersReducedMotion()
-  const sectionRef = useRef<HTMLElement>(null)
+  const rootRef = useRef<HTMLDivElement>(null)
   const lineRef = useRef<HTMLDivElement>(null)
 
   useGSAP(
@@ -28,7 +34,7 @@ export default function Experience() {
         scaleY: 1,
         ease: 'none',
         scrollTrigger: {
-          trigger: sectionRef.current,
+          trigger: rootRef.current,
           start: 'top 70%',
           end: 'bottom 55%',
           scrub: true,
@@ -37,14 +43,16 @@ export default function Experience() {
 
       gsap.set('.t-dot', { scale: 0 })
 
-      gsap.to(items[0].querySelector('.t-dot'), {
-        boxShadow: '0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent)',
-        duration: 1.6,
-        delay: 1,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-      })
+      if (pulse) {
+        gsap.to(items[0].querySelector('.t-dot'), {
+          boxShadow: '0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent)',
+          duration: 1.6,
+          delay: 1,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+        })
+      }
 
       items.forEach((item) => {
         const scrollTrigger = {
@@ -70,43 +78,57 @@ export default function Experience() {
         })
       })
     },
-    { scope: sectionRef, dependencies: [reduced] },
+    { scope: rootRef, dependencies: [reduced, pulse] },
   )
 
   return (
-    <section id="experience" ref={sectionRef} className="py-20 md:py-28 px-5 md:px-8">
-      <div className="mx-auto max-w-5xl">
-        <SectionHeader label="// timeline" title="Work Experience" />
+    <div ref={rootRef} className="relative pl-8 md:pl-10">
+      <div
+        ref={lineRef}
+        className="absolute left-[6.5px] top-2 bottom-2 w-px bg-[var(--border)]"
+        aria-hidden
+      />
 
-        <div className="relative pl-8 md:pl-10">
-          <div
-            ref={lineRef}
-            className="absolute left-[6.5px] top-2 bottom-2 w-px bg-[var(--border)]"
-            aria-hidden
-          />
+      <ol className="flex flex-col gap-8 md:gap-10">
+        {entries.map((entry) => (
+          <li key={entry.period + entry.org} className="t-item relative">
+            <span
+              className="t-dot absolute -left-8 md:-left-10 top-1.5 size-3.5 rounded-full border-2 border-[var(--accent)] bg-[var(--bg)]"
+              aria-hidden
+            />
+            <p className="font-mono text-xs text-accent mb-1.5">{entry.period}</p>
+            <h3 className="font-mono text-base md:text-lg font-semibold text-main tracking-tight">
+              {entry.role}
+            </h3>
+            <p className="font-mono text-sm text-dim mt-1">{entry.org}</p>
+            {entry.detail && (
+              <p className="font-sans text-sm text-dim mt-2 leading-relaxed max-w-2xl">
+                {entry.detail}
+              </p>
+            )}
+          </li>
+        ))}
+      </ol>
+    </div>
+  )
+}
 
-          <ol className="flex flex-col gap-8 md:gap-10">
-            {EXPERIENCE.map((entry) => (
-              <li key={entry.period + entry.org} className="t-item relative">
-                <span
-                  className="t-dot absolute -left-8 md:-left-10 top-1.5 size-3.5 rounded-full border-2 border-[var(--accent)] bg-[var(--bg)]"
-                  aria-hidden
-                />
-                <p className="font-mono text-xs text-accent mb-1.5">{entry.period}</p>
-                <h3 className="font-mono text-base md:text-lg font-semibold text-main tracking-tight">
-                  {entry.role}
-                </h3>
-                <p className="font-mono text-sm text-dim mt-1">{entry.org}</p>
-                {entry.detail && (
-                  <p className="font-sans text-sm text-dim mt-2 leading-relaxed max-w-2xl">
-                    {entry.detail}
-                  </p>
-                )}
-              </li>
-            ))}
-          </ol>
+export default function Experience() {
+  return (
+    <>
+      <section id="experience" className="py-20 md:py-28 px-5 md:px-8">
+        <div className="mx-auto max-w-5xl">
+          <SectionHeader label="// timeline" title="Work Experience" />
+          <Timeline entries={EXPERIENCE} pulse />
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section id="education" className="py-20 md:py-28 px-5 md:px-8">
+        <div className="mx-auto max-w-5xl">
+          <SectionHeader title="Education" />
+          <Timeline entries={EDUCATION} />
+        </div>
+      </section>
+    </>
   )
 }

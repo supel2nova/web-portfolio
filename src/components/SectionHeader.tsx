@@ -5,7 +5,7 @@ import { useRef } from 'react'
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 
 interface SectionHeaderProps {
-  label: string
+  label?: string
   title: string
   className?: string
 }
@@ -25,13 +25,15 @@ export default function SectionHeader({ label, title, className = '' }: SectionH
         once: true,
       }
 
-      gsap.from('.sh-label', {
-        opacity: 0,
-        x: -14,
-        duration: 0.5,
-        ease: 'power2.out',
-        scrollTrigger,
-      })
+      if (label) {
+        gsap.from('.sh-label', {
+          opacity: 0,
+          x: -14,
+          duration: 0.5,
+          ease: 'power2.out',
+          scrollTrigger,
+        })
+      }
 
       SplitText.create(titleRef.current, {
         type: 'lines,chars',
@@ -52,7 +54,9 @@ export default function SectionHeader({ label, title, className = '' }: SectionH
 
   return (
     <header ref={rootRef} className={`mb-10 md:mb-14 ${className}`}>
-      <p className="sh-label font-mono text-sm text-accent mb-3 tracking-wide">{label}</p>
+      {label && (
+        <p className="sh-label font-mono text-sm text-accent mb-3 tracking-wide">{label}</p>
+      )}
       <h2
         ref={titleRef}
         className="font-mono text-2xl md:text-3xl font-semibold text-main tracking-tight"

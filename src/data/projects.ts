@@ -110,6 +110,33 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    org: 'Dailynews',
+    short: 'EL',
+    slug: 'election66',
+    onWhite: true,
+    title: 'Election 2023 Live Results',
+    client: 'Side project — ODDS × Dailynews',
+    description:
+      'Live vote-counting site for the 2023 Thai general election, built with ODDS and published by Dailynews. Polls a static JSON feed every minute and re-renders national, provincial and constituency results, with an embeddable iframe build for partner newsrooms. Shipped from GitHub Actions to GHCR and served by nginx in Docker.',
+    tags: ['React', 'TypeScript', 'Vite', 'D3', 'Tailwind', 'Vitest', 'Docker'],
+    features: [
+      {
+        name: 'National overview',
+        shot: 'election-overview',
+        note: 'Captured from a local run — the live feed was retired after the election; national figures are the final 2023 results.',
+        detail:
+          'Counting progress for constituency and party-list ballots, a 500-seat parliament chart drawn with d3-parliament-chart, and a ranked seat table showing party-list votes beside the constituency + party-list split — all counting up from the previous value on each one-minute refresh.',
+      },
+      {
+        name: 'Province & constituency breakdown',
+        shot: 'election-province',
+        note: 'Captured from a local run with sample candidate data.',
+        detail:
+          'Province picked from the header dropdown: constituency tiles coloured by leading party, seats won, and the leading candidates per constituency with number, party and vote count — each constituency drilling into its own page.',
+      },
+    ],
+  },
+  {
     org: 'Inskru',
     short: 'IN',
     slug: 'inskru',
